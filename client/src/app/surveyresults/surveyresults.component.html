@@ -1,0 +1,22 @@
+<div class="container-fluid bg-white border-top pl-4 pr-4">
+        <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a >Survey</a></li>
+                        <li class="breadcrumb-item active"><a >Survey Result</a></li>
+                </ol>
+        </nav>
+        <div class="items-container">
+                <div class="d-flex">      
+                        <h5>{{surveyName}} ({{gridOptions?.api?.getModel().getRowCount()}})</h5>
+                </div>
+        </div>
+        <div >
+                <ag-grid-angular 
+                        class="ag-theme-balham" 
+                        style="height: 500px;width:100%;background:#ffff"   
+                        [gridOptions]="gridOptions"
+                >
+                </ag-grid-angular>
+        </div>
+</div>
+        

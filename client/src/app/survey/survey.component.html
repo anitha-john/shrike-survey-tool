@@ -1,0 +1,60 @@
+
+<div class="container-fluid bg-white border-top pl-4 pr-4">
+        <!-- <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a >Survey Creation</a></li>
+                </ol>
+        </nav> -->
+        
+        <h3 class="pt-2">{{survey?.title}}</h3>
+        <div class="border-top">
+        <br/>
+        </div>
+        <div *ngFor="let question of survey?.questions" >
+            <b>{{question.questionDesc}} </b>
+            <div [(ngSwitch)]="question.questionType">
+                        <ng-container *ngSwitchCase="'SingleLineInput'">
+                                <div class="form-group">
+                                        <input type="text"  [(ngModel)]="question.reponse"  class="form-control w-25 form-control-lg"  >
+                                </div>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'MultiLineInput'">
+                                <div class="form-group">
+                                        <textarea class="form-control form-control-lg" name="question.questionId"  [(ngModel)]="question.reponse"  rows="3"></textarea>
+                                </div>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'Dropdown'">
+                                <div class="form-group">
+                                        <select [(ngModel)]="question.reponse" class="form-control form-control-lg" >
+                                         <option  *ngFor="let option of question.optionValues" [value]="options">{{option}}</option>                               
+                                        </select>
+                                </div>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'MultiSelect'">
+              
+                                        <div class="form-group">
+                                                <div class="custom-control custom-checkbox" *ngFor="let option of question.optionValuesMulti">
+                                                        <input type="checkbox" [id]="option.value" class="custom-control-input" [(checked)]="option.checked" (click)="AddToResponse(question,option)" >
+                                                        <label class="custom-control-label"  [for]="option.value" >{{option.value}}</label>
+                                                </div>
+                                        </div>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'Radio'">
+                                        <div class="form-group">
+                                                <div class="custom-control custom-radio" *ngFor="let option of question.optionValues">
+                                                        <input type="radio" [value]="option" [id]="option" [(ngModel)]="question.reponse" name="customRadio" class="custom-control-input">
+                                                        <label class="custom-control-label" [for]="option">{{option}}</label>
+                                                </div>
+                                        </div>
+                        </ng-container>
+                        <!-- <ng-container *ngSwitchCase="'FileUpload'">
+                                        FileUpload
+                        </ng-container> -->
+            </div>
+        
+        </div>
+        
+        <button class="btn btn-lg btn-primary" (click)="SaveSurvey()" >Submit</button>
+        
+        </div>
+        

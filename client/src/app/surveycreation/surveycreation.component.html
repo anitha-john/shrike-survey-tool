@@ -1,0 +1,92 @@
+<div class="container-fluid bg-white border-top pl-4 pr-4 h-100" >
+<nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a >Survey</a></li>
+        </ol>
+</nav>
+<div class="items-container">
+    <div class="d-flex">      
+            <h5>Survey count ({{surveys?.length}})</h5>
+    </div>
+</div>
+<div class="row mb-1">
+        <div class="col">
+                <button class="btn btn-primary float-right " *ngIf="!showSurveyForm" (click)="showSurveyForm=true">Create New Survey</button>
+                <button class="btn btn-primary float-right" *ngIf="showSurveyForm" (click)="SaveSurvey()">Save Survey</button>
+                <button class="btn btn-secondary mr-2 float-right" *ngIf="showSurveyForm" (click)="showSurveyForm=false">Cancel</button>
+
+        </div>
+</div>
+
+<div *ngIf="showSurveyForm">
+    
+    <div class="form-group">
+        <label for="titleInput">Title</label>
+        <input  type="text" [(ngModel)]="title" class="form-control w-50" id="titleInput" placeholder="Name of the survey">
+    </div>
+    <div class="mh-50 overflow">
+        <div *ngFor="let question of questions" >
+              
+
+            <div class="form-group">
+                <label for="titleInput">Question description</label>
+                <input [(ngModel)]="question.questionDesc"  type="email" class="form-control w-50" [(ngModel)]="question.questionDesc" id="titleInput" placeholder="Description">
+
+               
+            </div>
+
+            <div class="form-group">
+                    <label for="questionType">Question Type</label>
+                    <select [(ngModel)]="question.questionType" class="form-control w-50" id="questionType">
+                            <option *ngFor="let types of questionTypes" [value]="types">{{types}}</option>
+
+                    </select>
+            </div>
+            <div *ngIf="question.questionType == 'Dropdown' || question.questionType == 'MultiSelect' || question.questionType == 'Radio' ">                   
+                    <ng-container >
+                            <div class="form-group">
+                                   <span> 
+                                    <input  type="text" class="form-control d-inline w-50" [(ngModel)]="optionText" id="titleInput" placeholder="options">
+                                    <button class="btn d-inline btn-secondary" (click)="AddOptions(optionText,question)">Add Options</button>
+                                </span>
+                            </div>
+                            <div>
+                                   
+                                <li *ngFor="let option of question.optionValues">{{option}}</li>
+                            </div>
+                    </ng-container>                 
+            </div>
+
+        </div>
+    </div>
+        <div class="d-flex">
+                <button class="btn btn-primary float-right" (click)="AddQuestions()">Add Questions</button>
+    
+        </div>
+</div>
+
+<div *ngIf="!showSurveyForm">
+    <h4>Surveys created</h4>
+        <a *ngFor="let survey of surveys"  class="card card-bordered card-bordering ">
+                <div class="card-body">
+                  <div class="row">
+                    
+                    <div class="col-10 pl-0">
+                      <h3 class="card-title"> {{survey.title}}</h3>
+                        <div class="card-text"> 
+                            <button class="btn btn-secondary ">Add Questions</button>
+                            <button class="btn btn-secondary ">Edit Survey</button>
+                            <button class="btn btn-secondary " (click)="Navigate(survey.surveyId,'/survey')">View Survey</button>
+                            <button class="btn btn-secondary " (click)="Navigate(survey.surveyId,'/surveyresults')">View Results</button>
+                            <button class="btn btn-secondary " (click)="publishSurvey(survey.surveyId,false)">Unpublish Survey</button>
+                            <button class="btn btn-primary " (click)="publishSurvey(survey.surveyId,true)">Publish Survey</button>
+            
+                        </div>
+                    </div>
+                  </div>
+                </div>
+        </a>
+  
+
+</div>
+</div>
