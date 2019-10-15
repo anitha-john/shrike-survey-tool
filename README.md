@@ -33,21 +33,28 @@ https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1#R7V1de5s2FP41uUw
  - GUI is present in Client folder
  - API is present in server folder
  - Database scripts are present in database folder
+ 
  **GUI setup**
+ 
 	 launch cmd at the client folder
 	 npm install
 	 ng serve
 	 on chrome http://localhost:4200 will be accessible.
+	 
 **API setup**
+
 	Open visual studio the SurveyAPI.sln in visual studio
 	.NET framework 4.6.1 is used.
 	Execute the program.
 	On chrome launch http://localhost:53293/swagger/ui/index
-	**Database setup**
+	
+**Database setup**
+
 	Install postgres DB.
 	Execute the scripts present in database folder.
 
 Add a user to start with on swagger use the http://localhost:53293/api/v1/login/AddUser and add a user.
 
 Now use the credentials to sign in to the tool.
+
 Happy surveying!!!
