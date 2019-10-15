@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -28,6 +29,18 @@ namespace SurveyAPI.Controllers
             memoryCache = _memoryCache;
             tokenOptions = _tokenOptions;           
         }
+
+        [HttpPost]
+        [Route("AddUser")]
+        [AllowAnonymous]
+        [SwaggerResponse(200)]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(500)]
+        public async Task<IHttpActionResult> AddUser(User _user)
+        {
+            return Ok(await authenticate.AddUserAndRole(_user));
+        }
+
 
         /// <summary>
         /// Get the JWT token for the credentials.

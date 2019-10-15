@@ -1,17 +1,15 @@
 # shrike-survey
 This project targets survey management and creation. The tool can be configured to have admin users or survey users.
 
-**system admin**
-- Configures and manages users and role for the survey tool.
 
-**Survey creation user**
+**admin**
 
  - Create surveys
  - Make surveys live or hide
  - View the survey responses
  - View dashboard of the analytics performed on survey responses.
 
-**Survey user**
+**user**
 
  - Takes the survey and submits it.
 
@@ -28,3 +26,28 @@ https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1#R7V1de5s2FP41uUw
 **Deployment**
 
 	Jenkins is used for enabling the CI/CD pipeline. A github hook is enabled which will auto trigger the build and deploy the code to the respective folder.
+
+**How to run**
+
+ - Check out the code on github
+ - GUI is present in Client folder
+ - API is present in server folder
+ - Database scripts are present in database folder
+ **GUI setup**
+	 launch cmd at the client folder
+	 npm install
+	 ng serve
+	 on chrome http://localhost:4200 will be accessible.
+**API setup**
+	Open visual studio the SurveyAPI.sln in visual studio
+	.NET framework 4.6.1 is used.
+	Execute the program.
+	On chrome launch http://localhost:53293/swagger/ui/index
+	**Database setup**
+	Install postgres DB.
+	Execute the scripts present in database folder.
+
+Add a user to start with on swagger use the http://localhost:53293/api/v1/login/AddUser and add a user.
+
+Now use the credentials to sign in to the tool.
+Happy surveying!!!
