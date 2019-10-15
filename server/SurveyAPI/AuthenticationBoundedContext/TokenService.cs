@@ -50,24 +50,16 @@ namespace AuthenticationBoundedContext
 
         private IEnumerable<Claim> GetTokenClaims(dynamic user)
         {
-            List<Claim> claims;
-            try
-            {
-                claims = new List<Claim>
+            List<Claim> claims = new List<Claim>
                 {
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Sub, user.Name.ToString()),
-                    new Claim("roles", user.SecurityLevel.ToString())
+                    new Claim("name", user.Name.ToString()),
+                    new Claim("password", user.Password.ToString()),
+                    new Claim("roles", user.Roles.ToString()),
+                    new Claim("application", "shrike-survey")
                 };
 
-                claims.Add(new Claim("application", "shrike-survey"));
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            
 
             return claims;
         }

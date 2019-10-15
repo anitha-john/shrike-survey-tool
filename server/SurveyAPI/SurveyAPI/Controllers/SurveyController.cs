@@ -1,6 +1,8 @@
 ﻿using AuthenticationBoundedContext;
 using CreationSharingBoundedContext;
+using Microsoft.Extensions.Caching.Memory;
 using Models;
+using SurveyAPI.Models;
 using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Collections.Generic;
@@ -15,14 +17,18 @@ namespace SurveyAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/v1/survey")]
+    [JWTAuthorisation]
     public class SurveyController : ApiController
     {
         public ISurveyQuestions surveyQuestionRoot { get; set; }
         public ISurveyRoot surveyRoot { get; set; }
-        public SurveyController(ISurveyRoot _surveyRoot, ISurveyQuestions _surveyQuestionRoot)
+        public IMemoryCache memoryCache { get; set; }
+
+        public SurveyController(ISurveyRoot _surveyRoot, ISurveyQuestions _surveyQuestionRoot, IMemoryCache _memoryCache)
         {
             surveyRoot = _surveyRoot;
             surveyQuestionRoot = _surveyQuestionRoot;
+            memoryCache = _memoryCache;
         }
 
         /// <summary>
@@ -31,6 +37,7 @@ namespace SurveyAPI.Controllers
         /// <param name="surveyId">The survey reference</param>
         /// <returns>Teh questionaire</returns>
         [HttpGet]
+        
         [SwaggerResponse(HttpStatusCode.OK, "", typeof(SurveyQuestionaire))]
         [SwaggerResponse(HttpStatusCode.BadRequest)]
         [Route("{surveyId}")]

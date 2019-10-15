@@ -1,5 +1,5 @@
 
-<div class="container-fluid bg-white border-top pl-4 pr-4">
+<div class="container-fluid bg-white border-top pl-4 pr-4" >
         <!-- <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a >Survey Creation</a></li>
@@ -54,7 +54,7 @@
         
         </div>
         
-        <button class="btn btn-lg btn-primary" (click)="SaveSurvey()" >Submit</button>
-        
+        <button *ngIf="survey.error === null"  class="btn btn-lg btn-primary" (click)="SaveSurvey()" >Submit</button>
+        <p>{{survey.error}}</p>
         </div>
         

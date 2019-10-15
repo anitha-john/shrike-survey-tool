@@ -79,16 +79,23 @@ export class SurveyComponent implements OnInit {
   {
     this.surveyService.GetSurvey(this.surveyId).subscribe((data:SurveyQuestionaire)=>{
       this.survey=data;
-      this.survey.questions.forEach(a=>{
-        debugger;
-        if(a.questionType.toString() === "MultiSelect")  
-        {
-          a.optionValuesMulti=[];
-          a.optionValues.forEach(option => {
-            a.optionValuesMulti.push({value:option,checked:false});
-          });
-        }
-      });
+      if(data.error === null )
+      {
+        this.survey.questions.forEach(a=>{
+          debugger;
+          if(a.questionType.toString() === "MultiSelect")  
+          {
+            a.optionValuesMulti=[];
+            a.optionValues.forEach(option => {
+              a.optionValuesMulti.push({value:option,checked:false});
+            });
+          }
+        });
+      }
+      else
+      {
+        alert(data.error);
+      }
     });
   }
 

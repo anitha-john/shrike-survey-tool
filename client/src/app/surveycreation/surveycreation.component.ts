@@ -62,7 +62,7 @@ export class SurveycreationComponent implements OnInit {
 
   getSurveysForUser()
   {
-    this.surveyService.GetSurveyForUser(encodeURIComponent('a.s@sc.com') ).subscribe((data:Survey[])=>{
+    this.surveyService.GetSurveyForUser(encodeURIComponent('default.user@test.com') ).subscribe((data:Survey[])=>{
       this.surveys=data;
     });
   }
@@ -76,6 +76,7 @@ export class SurveycreationComponent implements OnInit {
   {
     this.surveyService.PublishSurvey(surveyid,isPublish).subscribe(s=>{
       alert(isPublish?"Published.": "Un-Published.")
+      this.getSurveysForUser();
     },e=>{alert("Failed.")});
   }
 

@@ -45,7 +45,7 @@ namespace SurveyAPI.Controllers
                     // 3 = Environment Administrator (Future) -> DB Record present
                     // 4 = End-User (Future) -> DB Record present
                     // First check and do windows local administrator user authentication when doing partner login. These types are root level admins.
-                    if (user.SecurityLevel == 0)
+                    if (user.Roles == 0)
                     {
                         // Check with local admin user in the machine.
                         if (true) // Service call to validate login with user and pass

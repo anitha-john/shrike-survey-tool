@@ -5,7 +5,7 @@ import { HttpHeaders } from "@angular/common/http";
 
 @Injectable()
 export class ServiceBase {
-    webApi:string="http://localhost:62339/api/v1"
+    webApi:string="http://localhost:53293/api/v1"
     // webApi:string="http://srvcldgcrd003.fr.world.socgen:8100/API/api/v1"
     constructor(private http: HttpClient) {
     }

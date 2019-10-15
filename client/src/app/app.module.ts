@@ -9,6 +9,10 @@ import { SurveyresultsComponent } from './surveyresults/surveyresults.component'
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
+import { ServiceBase } from './shared/service/service-base';
+import { SurveyService } from './shared/service/survey-service';
+import { HttpClientModule } from '@angular/common/http'; 
+
 
 @NgModule({
   declarations: [
@@ -22,9 +26,13 @@ import { AgGridModule } from 'ag-grid-angular';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ServiceBase,
+    SurveyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

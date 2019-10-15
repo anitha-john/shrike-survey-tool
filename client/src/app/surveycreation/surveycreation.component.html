@@ -46,8 +46,8 @@
                     <ng-container >
                             <div class="form-group">
                                    <span> 
-                                    <input  type="text" class="form-control d-inline w-50" [(ngModel)]="optionText" id="titleInput" placeholder="options">
-                                    <button class="btn d-inline btn-secondary" (click)="AddOptions(optionText,question)">Add Options</button>
+                                    <input  type="text" class="form-control d-inline w-50" [(ngModel)]="question.optionText" id="titleInput" placeholder="options">
+                                    <button class="btn d-inline btn-secondary ml-1" style="    margin-top: -5px;" (click)="AddOptions(question.optionText,question)">Add Options</button>
                                 </span>
                             </div>
                             <div>
@@ -74,12 +74,12 @@
                     <div class="col-10 pl-0">
                       <h3 class="card-title"> {{survey.title}}</h3>
                         <div class="card-text"> 
-                            <button class="btn btn-secondary ">Add Questions</button>
-                            <button class="btn btn-secondary ">Edit Survey</button>
-                            <button class="btn btn-secondary " (click)="Navigate(survey.surveyId,'/survey')">View Survey</button>
-                            <button class="btn btn-secondary " (click)="Navigate(survey.surveyId,'/surveyresults')">View Results</button>
-                            <button class="btn btn-secondary " (click)="publishSurvey(survey.surveyId,false)">Unpublish Survey</button>
-                            <button class="btn btn-primary " (click)="publishSurvey(survey.surveyId,true)">Publish Survey</button>
+                            <button class="btn btn-secondary mr-1">Add Questions</button>
+                            <button class="btn btn-secondary mr-1">Edit Survey</button>
+                            <button class="btn btn-secondary mr-1" (click)="Navigate(survey.surveyId,'/survey')">View Survey</button>
+                            <button class="btn btn-secondary mr-1" (click)="Navigate(survey.surveyId,'/surveyresults')">View Results</button>
+                            <button class="btn btn-primary mr-1" *ngIf="survey.isPublished" (click)="publishSurvey(survey.surveyId,false)">Unpublish Survey</button>
+                            <button class="btn btn-primary mr-1" *ngIf="!survey.isPublished" (click)="publishSurvey(survey.surveyId,true)">Publish Survey</button>
             
                         </div>
                     </div>

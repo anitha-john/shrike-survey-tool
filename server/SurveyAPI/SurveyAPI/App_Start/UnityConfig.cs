@@ -43,6 +43,8 @@ namespace SurveyAPI
             IMemoryCache memorycache = new MemoryCache(new MemoryCacheOptions());
             container.RegisterInstance<IMemoryCache>(memorycache);
 
+          
+
             Microsoft.Owin.Security.Jwt.JwtBearerAuthenticationOptions op = new Microsoft.Owin.Security.Jwt.JwtBearerAuthenticationOptions();
             op.AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode.Active;
             op.TokenValidationParameters = new TokenValidationParameters
