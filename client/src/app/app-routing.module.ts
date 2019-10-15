@@ -3,13 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { SurveycreationComponent } from './surveycreation/surveycreation.component';
 import { SurveyComponent } from './survey/survey.component';
 import { SurveyresultsComponent } from './surveyresults/surveyresults.component';
+import { LoginComponentComponent } from './login-component/login-component.component';
 
 
 const routes: Routes = [
   {path: 'surveycreation', component: SurveycreationComponent},
   {path: 'survey/:surveyId', component: SurveyComponent},
   {path: 'surveyresults/:surveyId', component: SurveyresultsComponent},
-  {path: '**', redirectTo: ''}
+  {path: 'login', component: LoginComponentComponent},
+  {path: '**', redirectTo: 'login'}
 
 ];
 

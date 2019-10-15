@@ -11,7 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 import { ServiceBase } from './shared/service/service-base';
 import { SurveyService } from './shared/service/survey-service';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponentComponent } from './login-component/login-component.component'; 
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     SurveyComponent,
     SurveycreationComponent,
     SurveyresultsComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponentComponent
   ],
   imports: [
     BrowserModule,

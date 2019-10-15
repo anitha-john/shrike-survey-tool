@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Options;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -31,7 +31,7 @@ namespace AuthenticationBoundedContext
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public JwtSecurityToken GetJwtSecurityToken(dynamic user)
+        public JwtSecurityToken GetJwtSecurityToken(User user)
         {
             JwtSecurityToken securityToken = new JwtSecurityToken(
                 issuer: tokenOptions.Issuer,
@@ -48,15 +48,15 @@ namespace AuthenticationBoundedContext
             return securityToken;
         }
 
-        private IEnumerable<Claim> GetTokenClaims(dynamic user)
+        private IEnumerable<Claim> GetTokenClaims(User user)
         {
             List<Claim> claims = new List<Claim>
                 {
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Sub, user.Name.ToString()),
-                    new Claim("name", user.Name.ToString()),
-                    new Claim("password", user.Password.ToString()),
-                    new Claim("roles", user.Roles.ToString()),
+                    new Claim(JwtRegisteredClaimNames.Sub, user.emailID.ToString()),
+                    new Claim("email", user.emailID.ToString()),
+                    new Claim("password", user.pwd.ToString()),
+                    new Claim("roles", user.role.ToString()),
                     new Claim("application", "shrike-survey")
                 };
 

@@ -1,6 +1,6 @@
 ﻿using AuthenticationBoundedContext;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Options;
+using Models;
 using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Collections.Generic;
@@ -26,37 +26,31 @@ namespace SurveyAPI.Controllers
             tokenOptions = _tokenOptions;           
         }
 
+        /// <summary>
+        /// Get the JWT token for the credentials.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
         [SwaggerResponse(200)]
         [SwaggerResponse(400)]
         [SwaggerResponse(500)]
-        public IHttpActionResult Login([FromBody] dynamic user)
+        public IHttpActionResult Login([FromBody] User user)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     bool isValid = false;
-                    // 0 = Root Level -> no DB record
-                    // 1 = Master Administrator -> DB Record present
-                    // 2 = Customer Administrator -> DB Record present
-                    // 3 = Environment Administrator (Future) -> DB Record present
-                    // 4 = End-User (Future) -> DB Record present
-                    // First check and do windows local administrator user authentication when doing partner login. These types are root level admins.
-                    if (user.Roles == 0)
+                   
+                    
+                    if (authenticate.IsUserValid(user)) // Service call to validate login with user and pass
                     {
-                        // Check with local admin user in the machine.
-                        if (true) // Service call to validate login with user and pass
-                        {
-                            isValid = true;
-                        }
+                        isValid = true;
                     }
-                    else
-                    {
-                        //Non root users
-                    }
+                    
 
                     if (isValid)
                     {

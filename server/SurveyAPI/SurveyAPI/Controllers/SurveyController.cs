@@ -18,17 +18,20 @@ namespace SurveyAPI.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/v1/survey")]
     [JWTAuthorisation]
-    public class SurveyController : ApiController
+    public class SurveyController : BaseController
     {
         public ISurveyQuestions surveyQuestionRoot { get; set; }
         public ISurveyRoot surveyRoot { get; set; }
         public IMemoryCache memoryCache { get; set; }
+        public IAuthenticate authenticationContext { get; set; }
 
-        public SurveyController(ISurveyRoot _surveyRoot, ISurveyQuestions _surveyQuestionRoot, IMemoryCache _memoryCache)
+        public SurveyController(ISurveyRoot _surveyRoot, ISurveyQuestions _surveyQuestionRoot, IMemoryCache _memoryCache, IAuthenticate authContext): base(_memoryCache, authContext)
         {
             surveyRoot = _surveyRoot;
             surveyQuestionRoot = _surveyQuestionRoot;
+            authenticationContext = authContext;
             memoryCache = _memoryCache;
+            
         }
 
         /// <summary>

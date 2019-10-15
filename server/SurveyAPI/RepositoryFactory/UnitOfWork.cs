@@ -17,7 +17,7 @@ namespace RepositoryFactory
                 _connection = new NpgsqlConnection(Connection);
                 _connection.Open();
                 _transaction = _connection.BeginTransaction();
-           
+
         }
 
         public IDbConnection Connection { get { return _connection; } }

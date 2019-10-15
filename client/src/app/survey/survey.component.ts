@@ -17,12 +17,7 @@ export class SurveyComponent implements OnInit {
   showSurveyForm: boolean;
   survey: SurveyQuestionaire;
   
-  questionTypes:string[]=['SingleLineInput',
-    'MultiLineInput',
-    'Dropdown',
-    'MultiSelect',
-    'Radio',
-    'FileUpload'];
+  roles:string[]=['admin','user'];
     title:string;
   constructor( private router: Router,public surveyService:SurveyService,private route: ActivatedRoute)
   {

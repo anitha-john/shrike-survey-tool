@@ -71,6 +71,7 @@ namespace SurveyAPI
 			container.RegisterType<ISurveyResponse, SurveyResponse>();
 			container.RegisterType<ISurveyResponseRepository, SurveyResponseRepository>();
 			container.RegisterType<IAuthenticate, Authenticate>();
+			container.RegisterType<IAuthorisationRepository, AuthorisationRepository>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
 

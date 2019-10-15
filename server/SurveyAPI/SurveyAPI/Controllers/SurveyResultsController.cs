@@ -1,4 +1,7 @@
-﻿using Models;
+﻿using AuthenticationBoundedContext;
+using Microsoft.Extensions.Caching.Memory;
+using Models;
+using SurveyAPI.Models;
 using SurveyContext;
 using Swashbuckle.Swagger.Annotations;
 using System;
@@ -14,13 +17,17 @@ namespace SurveyAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/v1/surveyResults")]
-
-    public class SurveyResultsController : ApiController
+    [JWTAuthorisation]
+    public class SurveyResultsController : BaseController
     {
         public ISurveyContextAggregator surveyContext { get; set; }
-        public SurveyResultsController(ISurveyContextAggregator _surveyContext)
+        public IMemoryCache memoryCache { get; set; }
+
+        public SurveyResultsController(ISurveyContextAggregator _surveyContext, IMemoryCache _memoryCache, IAuthenticate authContext) : base(_memoryCache, authContext)
         {
             surveyContext = _surveyContext;
+            memoryCache = _memoryCache;
+
         }
 
         /// <summary>

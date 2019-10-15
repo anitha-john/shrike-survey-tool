@@ -1,18 +1,25 @@
-﻿using System;
+﻿using AuthenticationBoundedContext;
+using Microsoft.Extensions.Caching.Memory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
 
 namespace SurveyAPI.Controllers
 {
-    public class HomeController : Controller
+    public class BaseController : ApiController
     {
-        public ActionResult Index()
-        {
-            ViewBag.Title = "Home Page";
+        public IMemoryCache memoryCache { get; set; }
+        public IAuthenticate authenticationContext { get; set; }
 
-            return View();
+
+        public BaseController(IMemoryCache _memoryCache, IAuthenticate authContext)
+        {
+            memoryCache = _memoryCache;
+            authenticationContext = authContext;
+
+
         }
     }
 }

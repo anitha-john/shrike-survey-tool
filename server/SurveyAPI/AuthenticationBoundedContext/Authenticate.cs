@@ -1,21 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using Models;
+using RepositoryFactory;
 
 namespace AuthenticationBoundedContext
 {
     public class Authenticate : IAuthenticate
     {
-        public bool ValidLogin(object user)
+        public IAuthorisationRepository authorisationRepository { get; set; }
+        public Authenticate(IAuthorisationRepository _authorisationRepository)
         {
-            return true;
+            authorisationRepository = _authorisationRepository;
+        }
+        public async Task<string> AddUserAndRole(User _userInfo)
+        {
+            return await authorisationRepository.AddUserAndRole(_userInfo);
         }
 
-        public bool InvalidLogin(object user)
+        public async Task<User> GetUserAndRole(string emailId)
         {
+            return await authorisationRepository.GetUserAndRole(emailId);
+        }
+
+        public bool IsUserValid(User user)
+        {
+            var userInfo = authorisationRepository.GetUserAndRole(user.emailID).Result;
+
+            if(user.firstName == userInfo.firstName && user.role == userInfo.role && user.pwd == userInfo.pwd)
+            {
+                return true;
+            }
+
             return false;
         }
-
-
     }
 }
