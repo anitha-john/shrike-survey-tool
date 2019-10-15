@@ -64,7 +64,7 @@ export class SurveycreationComponent implements OnInit {
   {
     this.surveyService.GetSurveyForUser(encodeURIComponent('default.user@test.com') ).subscribe((data:Survey[])=>{
       this.surveys=data;
-    });
+    },e=>{this.router.navigate(['/login'])});
   }
 
   Navigate(surveyId:number, location:string)

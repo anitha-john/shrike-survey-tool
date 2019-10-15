@@ -74,8 +74,8 @@
                     <div class="col-10 pl-0">
                       <h3 class="card-title"> {{survey.title}}</h3>
                         <div class="card-text"> 
-                            <button class="btn btn-secondary mr-1">Add Questions</button>
-                            <button class="btn btn-secondary mr-1">Edit Survey</button>
+                            <button class="btn btn-secondary mr-1" disabled >Add Questions</button>
+                            <button class="btn btn-secondary mr-1" disabled>Edit Survey</button>
                             <button class="btn btn-secondary mr-1" (click)="Navigate(survey.surveyId,'/survey')">View Survey</button>
                             <button class="btn btn-secondary mr-1" (click)="Navigate(survey.surveyId,'/surveyresults')">View Results</button>
                             <button class="btn btn-primary mr-1" *ngIf="survey.isPublished" (click)="publishSurvey(survey.surveyId,false)">Unpublish Survey</button>

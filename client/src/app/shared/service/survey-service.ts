@@ -10,6 +10,7 @@ import { User } from '../Models/user';
 
 @Injectable()
 export class SurveyService extends ServiceBase {
+  Role: number=1;
    
    
   GetSurveyResults(surveyId: number): Observable<any[]> {
@@ -49,6 +50,7 @@ export class SurveyService extends ServiceBase {
   public Authenticate(user:User)
   {
       return this.post(user,"login");
+      
   }
     
 }

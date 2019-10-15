@@ -15,16 +15,25 @@ export class ServiceBase {
         const url=`${this.webApi}/${query}`
         return this
           .http
-          .get(url);
+          .get(url,{ headers: this.getRequestHeaders()});
           //.map((res: Response) => res.json());
       }
 
     post(data:any,query:string):any
     {
         const url=`${this.webApi}/${query}`
-        return this
+        if(query === 'login')
+        {
+          return this
           .http
-          .post(url,data,{ headers: this.getRequestHeaders()});
+          .post(url,data);
+        }
+        else
+        {
+          return this
+            .http
+            .post(url,data,{ headers: this.getRequestHeaders()});
+        }
     }  
 
     put(data:any,query:string):any
@@ -36,10 +45,10 @@ export class ServiceBase {
     }  
     
     private getRequestHeaders(): HttpHeaders {
-      
+      debugger;
         let header = new HttpHeaders()
-        header.append('Content-Type', 'application/json');
-        header.append('Authorization', `bearer ${this.storage.getToken()}`);
+        header=header.append('Content-Type', 'application/json');
+        header=header.append('Authorization', `Bearer ${this.storage.getToken()}`);
         return header;
     }
 }

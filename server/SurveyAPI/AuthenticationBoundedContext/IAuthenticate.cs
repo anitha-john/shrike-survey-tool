@@ -9,7 +9,7 @@ namespace AuthenticationBoundedContext
     public interface IAuthenticate
     {
         Task<string> AddUserAndRole(User _userInfo);
-        Task<User> GetUserAndRole(string emailId);
+       User GetUserAndRole(string emailId);
         bool IsUserValid(User user);
     }
 }

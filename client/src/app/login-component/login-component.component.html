@@ -10,7 +10,7 @@
         <div class="form-group">
                 <label>select Role</label>
                 <select [(ngModel)]="role" class="form-control form-control-lg w-25" >
-                        <option  *ngFor="let option of roles" [value]="options">{{option}}</option>                               
+                        <option  *ngFor="let option of roles" [value]="option">{{option.name}}</option>                               
                 </select>
         </div>
         <button   class="btn btn-lg btn-primary" (click)="Authenticate()" >Submit</button>

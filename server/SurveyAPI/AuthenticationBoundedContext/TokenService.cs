@@ -56,7 +56,7 @@ namespace AuthenticationBoundedContext
                     new Claim(JwtRegisteredClaimNames.Sub, user.emailID.ToString()),
                     new Claim("email", user.emailID.ToString()),
                     new Claim("password", user.pwd.ToString()),
-                    new Claim("roles", user.role.ToString()),
+                    new Claim("roles", (user.role == Role.admin?0:1).ToString()),
                     new Claim("application", "shrike-survey")
                 };
 
