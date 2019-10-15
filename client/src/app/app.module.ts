@@ -12,7 +12,9 @@ import { AgGridModule } from 'ag-grid-angular';
 import { ServiceBase } from './shared/service/service-base';
 import { SurveyService } from './shared/service/survey-service';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginComponentComponent } from './login-component/login-component.component'; 
+import {  LoginComponent } from './login-component/login-component.component'; 
+import { StorageServiceModule } from "ngx-webstorage-service";
+import { LocalStorageService } from './shared/service/localstorageService';
 
 
 @NgModule({
@@ -22,18 +24,21 @@ import { LoginComponentComponent } from './login-component/login-component.compo
     SurveycreationComponent,
     SurveyresultsComponent,
     NavbarComponent,
-    LoginComponentComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     AgGridModule.withComponents([]),
-    HttpClientModule
+    HttpClientModule,
+    StorageServiceModule 
   ],
   providers: [
     ServiceBase,
-    SurveyService
+    SurveyService,
+    LocalStorageService,
+    
   ],
   bootstrap: [AppComponent]
 })

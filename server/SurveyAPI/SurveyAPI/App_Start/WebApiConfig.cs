@@ -27,6 +27,7 @@ namespace SurveyAPI
                 conf.AddMap(new QuestionsMap());
                 conf.AddMap(new SurveyMap());
                 conf.AddMap(new SurveyResponseModelMap());
+                conf.AddMap(new UserMap());
             });
 
            

@@ -9,9 +9,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace SurveyAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/v1/login")]
     public class LoginController : ApiController
     {
         public IAuthenticate authenticate { get; set; }
@@ -32,7 +35,7 @@ namespace SurveyAPI.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("login")]
+        [Route("")]
         [AllowAnonymous]
         [SwaggerResponse(200)]
         [SwaggerResponse(400)]

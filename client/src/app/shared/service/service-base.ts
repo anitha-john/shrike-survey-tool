@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from "@angular/common/http";
+import { LocalStorageService } from './localstorageService';
 
 
 @Injectable()
 export class ServiceBase {
     webApi:string="http://localhost:53293/api/v1"
     // webApi:string="http://srvcldgcrd003.fr.world.socgen:8100/API/api/v1"
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,private storage:LocalStorageService) {
     }
 
     get(query :string): any {
@@ -38,7 +39,7 @@ export class ServiceBase {
       
         let header = new HttpHeaders()
         header.append('Content-Type', 'application/json');
-        // header.append('Authorization', (document.querySelector('sgwt-connect') as any).sgwtConnect.getAuthorizationHeader());
+        header.append('Authorization', `bearer ${this.storage.getToken()}`);
         return header;
     }
 }

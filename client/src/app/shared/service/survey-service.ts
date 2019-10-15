@@ -6,6 +6,7 @@ import { Survey } from '../models/survey';
 import { Observable } from "rxjs";
 import { Question, SurveyResponseModel } from '../models/question';
 import { SurveyQuestionaire } from "../models/SurveyQuestionaire";
+import { User } from '../Models/user';
 
 @Injectable()
 export class SurveyService extends ServiceBase {
@@ -43,6 +44,11 @@ export class SurveyService extends ServiceBase {
   {
     var query=`survey/Questions?surveyId=${surveyId}`;
       return this.post(questions,query);
+  }
+
+  public Authenticate(user:User)
+  {
+      return this.post(user,"login");
   }
     
 }
